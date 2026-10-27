@@ -15,8 +15,9 @@ const Home = () => {
       }}
     >
       <HeroSection />
-      <ProgramsPreview />
+      
       <FounderSection />
+      <ProgramsPreview />
       <ImpactSection />
       <SuccessStories />
       <HomeCTA/>
