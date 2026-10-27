@@ -1,21 +1,23 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 
-
-const heroVideo = "https://res.cloudinary.com/yozeshlg/video/upload/v1793075516/Create_a_15-second_photorealistic_cinematic_documentary_video_in_16_9_using_the_supplied_image_as_the_exact_visual_reference_and_opening_frame._Preserve_the_same_Indian_school_environment_children_blue-and-white.mp4";
+const heroVideo =
+  "https://res.cloudinary.com/yozeshlg/video/upload/v1793075516/Create_a_15-second_photorealistic_cinematic_documentary_video_in_16_9_using_the_supplied_image_as_the_exact_visual_reference_and_opening_frame._Preserve_the_same_Indian_school_environment_children_blue-and-white.mp4";
 
 const heroImage =
-  "https://res.cloudinary.com/yozeshlg/image/upload/v1793012797/Laughing_School_Friends_on_Village_Path.png";
+  "https://res.cloudinary.com/yozeshlg/image/upload/v1793084471/Joyful_Children_Amidst_the_Debris.png";
 
-// Slide 1 = the image, slide 2 = the video (then it loops back to the image)
+
 const slides = [
   { type: "image", src: heroImage },
   { type: "video", src: heroVideo },
 ];
 
-const SLIDE_INTERVAL = 2000; // image slides change every 2 seconds
+const SLIDE_INTERVAL = 4000; 
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
   const videoRef = useRef(null);
 
@@ -24,20 +26,20 @@ const HeroSection = () => {
   useEffect(() => {
     const slide = slides[current];
 
-    // Video slide: play from the start, move on when it ends (onEnded below)
+  
     if (slide.type === "video") {
       const video = videoRef.current;
       if (video) {
         video.currentTime = 0;
         const playPromise = video.play();
         if (playPromise && playPromise.catch) {
-          playPromise.catch(goNext); // if autoplay is blocked, skip to images
+          playPromise.catch(goNext);
         }
       }
       return undefined;
     }
 
-    // Image slide: wait 2 seconds, then go to the next slide
+   
     const timer = setTimeout(goNext, SLIDE_INTERVAL);
     return () => clearTimeout(timer);
   }, [current]);
@@ -51,11 +53,15 @@ const HeroSection = () => {
     }
   };
 
+  const goTo = (path) => {
+    navigate(path);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   const styles = {
     section: {
       width: "100%",
       overflow: "hidden",
-      // backgroundColor: "#061F3F",
     },
 
     hero: {
@@ -90,6 +96,75 @@ const HeroSection = () => {
       objectFit: "cover",
     },
 
+   
+    overlay: {
+      position: "absolute",
+      inset: 0,
+      zIndex: 1,
+      background: "rgba(0,0,0,0.45)",
+      pointerEvents: "none",
+    },
+
+    content: {
+      position: "relative",
+      zIndex: 2,
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+      padding: "120px 6% 100px",
+    },
+
+    title: {
+      margin: 0,
+      color: "#FFFFFF",
+      fontFamily: "'Playfair Display', Georgia, 'Times New Roman', serif",
+      fontSize: "clamp(24px, 4vw, 60px)",
+      fontWeight: "700",
+      letterSpacing: "1px",
+      lineHeight: 1.15,
+    },
+
+    text: {
+      maxWidth: "840px",
+      margin: "28px 0 0",
+      color: "rgba(255,255,255,0.92)",
+      fontSize: "clamp(14px, 1.2vw, 17px)",
+      lineHeight: 1.7,
+    },
+
+    buttons: {
+      marginTop: "44px",
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "center",
+      gap: "18px",
+    },
+
+    donateBtn: {
+      padding: "14px 30px",
+      color: "#10213B",
+      backgroundColor: "#FFC800",
+      border: "none",
+      borderRadius: "2px",
+      fontSize: "16px",
+      fontWeight: "600",
+      cursor: "pointer",
+    },
+
+    aboutBtn: {
+      padding: "14px 34px",
+      color: "#FFFFFF",
+      backgroundColor: "#111111",
+      border: "none",
+      borderRadius: "2px",
+      fontSize: "16px",
+      fontWeight: "600",
+      cursor: "pointer",
+    },
+
     scrollButton: {
       position: "absolute",
       zIndex: 4,
@@ -121,7 +196,7 @@ const HeroSection = () => {
   return (
     <section id="home" style={styles.section}>
       <div style={styles.hero}>
-        {/* Slides: video first, then images */}
+        {/* Slides: image first, then video */}
         <motion.div
           style={styles.slider}
           animate={{ x: `-${current * 100}%` }}
@@ -153,6 +228,59 @@ const HeroSection = () => {
           )}
         </motion.div>
 
+        {/* Dark overlay */}
+        <div style={styles.overlay} />
+
+        {/* Hero text + buttons */}
+        <div style={styles.content}>
+          <motion.h1
+            style={styles.title}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Every Child Deserves To Learn
+          </motion.h1>
+
+          <motion.p
+            style={styles.text}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            At Blanco Educational Academy, we bring quality education,
+            nutritious meals, and a safe place to grow to children who need it
+            most. With your support, a child's smile today becomes a confident
+            future tomorrow.
+          </motion.p>
+
+          <motion.div
+            style={styles.buttons}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <motion.button
+              type="button"
+              style={styles.donateBtn}
+              onClick={() => goTo("/donate")}
+              whileHover={{ y: -4, scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              Support A Child
+            </motion.button>
+
+            <motion.button
+              type="button"
+              style={styles.aboutBtn}
+              onClick={() => goTo("/about")}
+              whileHover={{ y: -4, scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+            >
+              Our Story
+            </motion.button>
+          </motion.div>
+        </div>
         {/* Scroll button with hover effect */}
         <motion.button
           type="button"

@@ -12,13 +12,13 @@ const Gallery = () => {
     {
       id: 1,
       category: "Education",
-      title: "Learning Together",
+      title: "Teachers Day Celebration",
       description:
         "Students participating in an interactive classroom learning session.",
       location: "Hyderabad",
       date: "August 2026",
       image:
-        "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793090718/WhatsApp_Image_2026-10-26_at_11.44.28.jpg ",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ const Gallery = () => {
       location: "Blanco Learning Centre",
       date: "July 2026",
       image:
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793092405/0dec0631-11f9-4fee-a8a4-a4c8e1909ec0.png",
     },
     {
       id: 3,
@@ -40,7 +40,7 @@ const Gallery = () => {
       location: "Hyderabad",
       date: "July 2026",
       image:
-        "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793092022/aeac7090-dd1a-4a81-8c50-296483cabc27.png",
     },
     {
       id: 4,
@@ -51,7 +51,7 @@ const Gallery = () => {
       location: "Community Hall",
       date: "June 2026",
       image:
-        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091697/9c1a25fa-ae86-4f40-a419-219e2b86ba27.png",
     },
     {
       id: 5,
@@ -59,10 +59,10 @@ const Gallery = () => {
       title: "Young Innovators Workshop",
       description:
         "Students exploring robotics, electronics, AI awareness and practical science.",
-      location: "Blanco Innovation Lab",
+      location: "Blanco Innovation Lab",  
       date: "June 2026",
       image:
-        "https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793092286/701fea6a-986d-4caf-b4f4-853b757e1b53.png",
     },
     {
       id: 6,
@@ -73,7 +73,7 @@ const Gallery = () => {
       location: "Government School",
       date: "May 2026",
       image:
-        "https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091896/351b3476-03ce-4350-b1c2-d3137fe47117.png",
     },
     {
       id: 7,
@@ -84,7 +84,7 @@ const Gallery = () => {
       location: "Hyderabad",
       date: "May 2026",
       image:
-        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091818/b9e5a894-8fee-483e-8ce8-d5c941ea5ede.png",
     },
     {
       id: 8,
@@ -95,18 +95,18 @@ const Gallery = () => {
       location: "Community Learning Centre",
       date: "April 2026",
       image:
-        "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091084/d1f59632-b504-4e1a-a6fd-9116d59ea57d.png",
     },
     {
       id: 9,
       category: "Environment",
-      title: "Green School Initiative",
+      title: "Blue Day Celebration",
       description:
-        "Students and volunteers planting trees and learning about environmental responsibility.",
+        "Students and volunteers and learning about environmental responsibility.",
       location: "Hyderabad",
       date: "March 2026",
       image:
-        "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091180/804cd0d7-fe35-4c18-8a28-37b3c4189213.png",
     },
     {
       id: 10,
@@ -117,7 +117,7 @@ const Gallery = () => {
       location: "Community Centre",
       date: "March 2026",
       image:
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091596/712da74d-9e7d-4cba-b7a2-56da99c52876.png",
     },
     {
       id: 11,
@@ -128,7 +128,7 @@ const Gallery = () => {
       location: "Blanco Learning Centre",
       date: "February 2026",
       image:
-        "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091339/11084299-2830-437b-9318-190ced0f26dc.png",
     },
     {
       id: 12,
@@ -139,7 +139,7 @@ const Gallery = () => {
       location: "Blanco Educational Academy",
       date: "February 2026",
       image:
-        "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85",
+        "https://res.cloudinary.com/nemhlaod/image/upload/v1793091405/e27c799b-267c-4efc-af9a-d820c804c18c.png"   
     },
   ];
 
@@ -562,65 +562,12 @@ const Gallery = () => {
   return (
     <main style={styles.page}>
       {/* Hero */}
-      <section style={styles.hero}>
-        <motion.div
-          style={styles.heroGlowOne}
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, -35, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        <motion.div
-          style={styles.heroGlowTwo}
-          animate={{
-            scale: [1, 1.18, 1],
-            y: [0, -35, 0],
-          }}
-          transition={{
-            duration: 9,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        <motion.div
-          style={styles.heroContent}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <span style={styles.heroBadge}>
-            OUR GALLERY
-          </span>
-
-          <h1 style={styles.heroTitle}>
-            Moments that show{" "}
-            <span style={styles.goldText}>
-              meaningful impact.
-            </span>
-          </h1>
-
-          <p style={styles.heroDescription}>
-            Explore moments from our educational programs,
-            workshops, community drives and student-development
-            initiatives.
-          </p>
-        </motion.div>
-      </section>
 
       {/* Gallery */}
       <section style={styles.gallerySection}>
         <div style={styles.container}>
           <div style={styles.headingArea}>
-            <p style={styles.smallHeading}>
-              STORIES THROUGH PICTURES
-            </p>
+
 
             <h2 style={styles.sectionTitle}>
               Our journey in action

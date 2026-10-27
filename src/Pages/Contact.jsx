@@ -16,23 +16,23 @@ const Contact = () => {
     {
       icon: "📍",
       title: "Visit Our Office",
-      text: "Hyderabad, Telangana, India",
+      text: "St. George's School, Hyderabad, Telangana, India",
       linkText: "Get directions",
-      href: "https://maps.google.com/?q=Hyderabad,Telangana",
+      href: "https://www.google.com/maps?ll=17.374749,78.550057&z=14&t=m&hl=en&gl=IN&mapclient=embed&cid=10872085256862175568",
     },
     {
       icon: "📞",
       title: "Call Us",
-      text: "+91 98765 43210",
+      text: "+91 79891 91692",
       linkText: "Call now",
-      href: "tel:+919876543210",
+      href: "tel:+917989191692",
     },
     {
       icon: "✉️",
       title: "Email Us",
-      text: "info@blancoacademy.org",
+      text: "blancoeducationalacademy@gmail.com",
       linkText: "Send an email",
-      href: "mailto:info@blancoacademy.org",
+      href: "mailto:blancoeducationalacademy@gmail.com",
     },
     {
       icon: "🕐",
@@ -58,8 +58,14 @@ const Contact = () => {
       padding: "170px 6% 90px",
       overflow: "hidden",
       textAlign: "center",
-      background:
-        "linear-gradient(135deg, #031B42 0%, #06275B 55%, #123F2A 100%)",
+      // Combine a dark semi-transparent gradient with your background image URL
+      backgroundImage: `
+        linear-gradient(135deg, rgba(3, 27, 66, 0.88) 0%, rgba(6, 39, 91, 0.85) 55%, rgba(18, 63, 42, 0.88) 100%),
+        url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1920&q=80')
+      `,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
     },
 
     heroGlowOne: {
@@ -701,9 +707,9 @@ const Contact = () => {
               <div style={styles.socialButtons}>
                 {[
                   { icon: "f", label: "Facebook" },
-                  { icon: "◎", label: "Instagram" },
+                  { icon: "i", label: "Instagram" },
                   { icon: "in", label: "LinkedIn" },
-                  { icon: "▶", label: "YouTube" },
+                  { icon: "t", label: "Twitter" },
                 ].map((social) => (
                   <motion.a
                     key={social.label}
@@ -888,60 +894,7 @@ const Contact = () => {
       </section>
 
       {/* Location */}
-      <section style={styles.mapSection}>
-        <motion.div
-          style={styles.mapContainer}
-          initial={{ opacity: 0, y: 55 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <div>
-            <h2 style={styles.mapTitle}>
-              Find us in Hyderabad
-            </h2>
-
-            <p style={styles.mapText}>
-              Visit Blanco Educational Academy to learn more about
-              our programs, volunteering opportunities and student
-              support initiatives.
-            </p>
-
-            <motion.a
-              href="https://maps.google.com/?q=Hyderabad,Telangana"
-              target="_blank"
-              rel="noreferrer"
-              style={styles.directionButton}
-              whileHover={{ y: -4, scale: 1.03 }}
-            >
-              Open in Google Maps →
-            </motion.a>
-          </div>
-
-          <motion.div
-            style={styles.mapVisual}
-            whileHover={{ scale: 1.02 }}
-          >
-            <div>
-              <motion.div
-                style={styles.mapPin}
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                📍
-              </motion.div>
-
-              <p style={styles.mapLocation}>
-                Hyderabad, Telangana
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
+     
     </main>
   );
 };

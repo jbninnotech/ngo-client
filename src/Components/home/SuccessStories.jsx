@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 const stories = [
   {
     image:
-      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85",
+      "https://res.cloudinary.com/yozeshlg/image/upload/v1793091348/WhatsApp_Image_2026-10-26_at_11.44.18_AM.jpg",
     category: "Student Support",
     title: "A Dream Supported",
     description:
@@ -11,7 +11,7 @@ const stories = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1529390079861-591de354faf5?auto=format&fit=crop&w=900&q=85",
+      "https://res.cloudinary.com/yozeshlg/image/upload/v1793091567/WhatsApp_Image_2026-10-26_at_11.44.32_AM.jpg",
     category: "Volunteering",
     title: "Volunteers Creating Impact",
     description:
@@ -19,7 +19,7 @@ const stories = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=900&q=85",
+      "https://res.cloudinary.com/yozeshlg/image/upload/v1793091626/WhatsApp_Image_2026-10-26_at_11.44.26_AM.jpg",
     category: "Digital Education",
     title: "Learning Beyond Classrooms",
     description:
@@ -27,22 +27,23 @@ const stories = [
   },
 ];
 
+
 const styles = {
   section: {
-    padding: "100px 6%",
+    padding: "70px 6%",
     backgroundColor: "#F5F8FC",
   },
 
   container: {
     width: "100%",
-    maxWidth: "1220px",
+    maxWidth: "1100px",
     margin: "0 auto",
   },
 
   badge: {
     display: "table",
-    margin: "0 auto 15px",
-    padding: "8px 17px",
+    margin: "0 auto 14px",
+    padding: "7px 16px",
     color: "#2E7D32",
     backgroundColor: "#EAF5E9",
     border: "1px solid #CFE7CC",
@@ -54,38 +55,38 @@ const styles = {
 
   sectionTitle: {
     maxWidth: "780px",
-    margin: "0 auto 18px",
+    margin: "0 auto 12px",
     color: "#06275B",
     textAlign: "center",
-    fontSize: "clamp(32px, 5vw, 48px)",
+    fontSize: "clamp(22px, 5vw, 28px)",
   },
 
   description: {
-    maxWidth: "720px",
-    margin: "0 auto 52px",
+    maxWidth: "620px",
+    margin: "0 auto 40px",
     color: "#68778B",
     textAlign: "center",
-    fontSize: "16px",
-    lineHeight: "1.8",
+    fontSize: "15px",
+    lineHeight: "1.7",
   },
 
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: "28px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "22px",
   },
 
   card: {
     overflow: "hidden",
     backgroundColor: "#ffffff",
     border: "1px solid #E6ECF4",
-    borderRadius: "20px",
-    boxShadow: "0 15px 40px rgba(6,39,91,0.10)",
+    borderRadius: "16px",
+    boxShadow: "0 10px 28px rgba(6,39,91,0.08)",
   },
 
   imageContainer: {
     position: "relative",
-    height: "250px",
+    height: "190px",
     overflow: "hidden",
   },
 
@@ -98,34 +99,35 @@ const styles = {
 
   category: {
     position: "absolute",
-    left: "18px",
-    bottom: "17px",
-    padding: "7px 13px",
+    left: "14px",
+    bottom: "14px",
+    padding: "6px 12px",
     color: "#ffffff",
     backgroundColor: "#2E7D32",
     borderRadius: "20px",
     fontSize: "10px",
-    fontWeight: "750",
+    fontWeight: "700",
   },
 
   content: {
-    padding: "26px",
+    padding: "20px",
   },
 
   title: {
-    margin: "0 0 12px",
+    margin: "0 0 8px",
     color: "#06275B",
-    fontSize: "21px",
+    fontSize: "18px",
   },
 
   storyText: {
-    margin: "0 0 20px",
+    margin: "0 0 14px",
     color: "#68778B",
-    fontSize: "14px",
-    lineHeight: "1.75",
+    fontSize: "13px",
+    lineHeight: "1.6",
   },
 
   link: {
+    display: "inline-block",
     color: "#C18413",
     textDecoration: "none",
     fontSize: "13px",
@@ -143,15 +145,12 @@ const SuccessStories = () => {
       transition={{ duration: 0.8 }}
     >
       <div style={styles.container}>
-        <span style={styles.badge}>SUCCESS STORIES</span>
+        <span style={styles.badge}>STORIES OF CHANGE</span>
 
-        <h2 style={styles.sectionTitle}>
-          Education that transforms lives
-        </h2>
+        <h2 style={styles.sectionTitle}>Every child has a story</h2>
 
         <p style={styles.description}>
-          Every supported student represents a dream receiving the
-          opportunity to grow.
+          Real lives changed because someone believed in them.
         </p>
 
         <div style={styles.grid}>
@@ -167,8 +166,8 @@ const SuccessStories = () => {
                 delay: index * 0.14,
               }}
               whileHover={{
-                y: -12,
-                boxShadow: "0 25px 60px rgba(6,39,91,0.17)",
+                y: -8,
+                boxShadow: "0 20px 44px rgba(6,39,91,0.15)",
               }}
             >
               <div style={styles.imageContainer}>
@@ -176,13 +175,11 @@ const SuccessStories = () => {
                   src={story.image}
                   alt={story.title}
                   style={styles.image}
-                  whileHover={{ scale: 1.09 }}
+                  whileHover={{ scale: 1.08 }}
                   transition={{ duration: 0.5 }}
                 />
 
-                <span style={styles.category}>
-                  {story.category}
-                </span>
+                <span style={styles.category}>{story.category}</span>
               </div>
 
               <div style={styles.content}>
@@ -194,7 +191,7 @@ const SuccessStories = () => {
                   style={styles.link}
                   whileHover={{ x: 6 }}
                 >
-                  Explore our gallery →
+                  Read more →
                 </motion.a>
               </div>
             </motion.article>

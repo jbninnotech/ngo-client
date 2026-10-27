@@ -778,7 +778,7 @@ const Donate = () => {
   return (
     <main style={styles.page}>
       {/* Hero */}
-      <section style={styles.hero}>
+      {/* <section style={styles.hero}>
         <motion.div
           style={styles.heroGlowOne}
           animate={{
@@ -828,7 +828,7 @@ const Donate = () => {
             resources to deserving students.
           </p>
         </motion.div>
-      </section>
+      </section> */}
 
       {/* Donation form */}
       <section style={styles.donationSection}>

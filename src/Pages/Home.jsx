@@ -15,12 +15,12 @@ const Home = () => {
       }}
     >
       <HeroSection />
-      
-      <FounderSection />
+
       <ProgramsPreview />
+      <FounderSection />
       <ImpactSection />
       <SuccessStories />
-      <HomeCTA/>
+      <HomeCTA />
     </main>
   );
 };

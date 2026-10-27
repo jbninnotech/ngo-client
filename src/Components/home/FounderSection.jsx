@@ -11,14 +11,11 @@ const achievements = [
   { number: "1,500+", label: "Students supported" },
 ];
 
-/* ---------- All colors live here: change them in one place ---------- */
 const colors = {
-  // section background (light blue)
   bgFrom: "#EEF6FF",
   bgTo: "#CFE3F8",
-  bgGlow: "rgba(227, 171, 53, 0.18)", // soft gold light, top right
+  bgGlow: "rgba(227, 171, 53, 0.18)",
 
-  // text (dark, because the background is light)
   heading: "#06275B",
   highlight: "#A8700A",
   body: "#3F5573",
@@ -71,7 +68,7 @@ const FounderSection = () => {
       flexDirection: "column",
       alignItems: "center",
     },
-    // stationary hover target (never moves, so no flicker)
+
     photoHit: {
       position: "relative",
       zIndex: 1,
@@ -248,8 +245,12 @@ const FounderSection = () => {
           <div
             style={styles.photoHit}
             // mouse hover only; touch devices use tap/click
-            onPointerEnter={(e) => e.pointerType === "mouse" && setFlipped(true)}
-            onPointerLeave={(e) => e.pointerType === "mouse" && setFlipped(false)}
+            onPointerEnter={(e) =>
+              e.pointerType === "mouse" && setFlipped(true)
+            }
+            onPointerLeave={(e) =>
+              e.pointerType === "mouse" && setFlipped(false)
+            }
             onClick={() => setFlipped((v) => !v)}
           >
             <div style={styles.backdrop} />
@@ -280,7 +281,9 @@ const FounderSection = () => {
                   />
                 </div>
 
-                <div style={{ ...styles.photoFace, transform: "rotateY(180deg)" }}>
+                <div
+                  style={{ ...styles.photoFace, transform: "rotateY(180deg)" }}
+                >
                   <img
                     src={photos[1]}
                     alt="Founder of Blanco Educational Academy"
@@ -294,7 +297,7 @@ const FounderSection = () => {
 
           <div style={styles.nameCard}>
             {/* Replace with the real founder name */}
-            <p style={styles.name}>Founder Name</p>
+            <p style={styles.name}>Mohammad Ismail</p>
             <p style={styles.role}>Founder & Chairman</p>
           </div>
         </motion.div>
@@ -307,10 +310,10 @@ const FounderSection = () => {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         >
-          <span style={styles.label}>
+          {/* <span style={styles.label}>
             <span style={styles.labelDot} />
             Meet our founder
-          </span>
+          </span> */}
 
           <h2 style={styles.title}>
             A vision built on{" "}
