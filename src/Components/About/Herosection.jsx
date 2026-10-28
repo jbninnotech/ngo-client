@@ -9,8 +9,28 @@ const HeroSection = () => {
       display: "flex",
       alignItems: "center",
       overflow: "hidden",
+      isolation: "isolate",
+      backgroundColor: "#031B42",
+    },
+
+    videoBackground: {
+      position: "absolute",
+      inset: 0,
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+      objectPosition: "center",
+      zIndex: -2,
+      pointerEvents: "none",
+    },
+
+    videoOverlay: {
+      position: "absolute",
+      inset: 0,
+      zIndex: -1,
       background:
-        "linear-gradient(135deg, #031B42 0%, #06275B 55%, #123F2A 100%)",
+        "linear-gradient(90deg, rgba(3, 20, 52, 0.92) 0%, rgba(3, 27, 66, 0.78) 50%, rgba(3, 27, 66, 0.58) 100%)",
+      pointerEvents: "none",
     },
 
     glowOne: {
@@ -20,8 +40,10 @@ const HeroSection = () => {
       width: "470px",
       height: "470px",
       borderRadius: "50%",
-      backgroundColor: "rgba(218,165,50,0.16)",
+      backgroundColor: "rgba(218,165,50,0.12)",
       filter: "blur(25px)",
+      zIndex: 0,
+      pointerEvents: "none",
     },
 
     glowTwo: {
@@ -31,8 +53,10 @@ const HeroSection = () => {
       width: "470px",
       height: "470px",
       borderRadius: "50%",
-      backgroundColor: "rgba(46,125,50,0.20)",
+      backgroundColor: "rgba(46,125,50,0.14)",
       filter: "blur(30px)",
+      zIndex: 0,
+      pointerEvents: "none",
     },
 
     container: {
@@ -70,6 +94,7 @@ const HeroSection = () => {
       color: "#FFFFFF",
       fontSize: "clamp(42px, 6vw, 68px)",
       lineHeight: "1.1",
+      fontWeight: "800",
     },
 
     goldText: {
@@ -78,7 +103,7 @@ const HeroSection = () => {
 
     description: {
       margin: "0 0 31px",
-      color: "#CFDBEA",
+      color: "#E0E8F4",
       fontSize: "17px",
       lineHeight: "1.85",
     },
@@ -116,6 +141,8 @@ const HeroSection = () => {
       border: "1px solid rgba(255,255,255,0.17)",
       borderRadius: "28px",
       boxShadow: "0 30px 70px rgba(0,0,0,0.28)",
+      backdropFilter: "blur(5px)",
+      WebkitBackdropFilter: "blur(5px)",
     },
 
     image: {
@@ -155,6 +182,27 @@ const HeroSection = () => {
 
   return (
     <section style={styles.hero}>
+      {/* Full background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        style={styles.videoBackground}
+      >
+        <source
+          src="https://res.cloudinary.com/nemhlaod/video/upload/v1793095538/184828-874264394_medium.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support background video.
+      </video>
+
+      {/* Dark overlay to keep text readable */}
+      <div style={styles.videoOverlay} />
+
+      {/* Animated background glow effects */}
       <motion.div
         style={styles.glowOne}
         animate={{
@@ -181,6 +229,7 @@ const HeroSection = () => {
         }}
       />
 
+      {/* Hero content */}
       <div style={styles.container}>
         <motion.div
           style={styles.content}
@@ -221,8 +270,7 @@ const HeroSection = () => {
               style={styles.secondaryButton}
               whileHover={{
                 y: -5,
-                backgroundColor:
-                  "rgba(255,255,255,0.16)",
+                backgroundColor: "rgba(255,255,255,0.16)",
               }}
               whileTap={{ scale: 0.97 }}
             >
@@ -231,6 +279,7 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
+        {/* Classroom image and student counter */}
         <motion.div
           style={styles.imageWrapper}
           initial={{
@@ -249,7 +298,7 @@ const HeroSection = () => {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&w=1000&q=85"
+            src="https://res.cloudinary.com/nemhlaod/image/upload/v1793100098/9a774f98-ce85-4f5c-984e-f8dd4e052848.png"
             alt="Students learning together"
             style={styles.image}
           />

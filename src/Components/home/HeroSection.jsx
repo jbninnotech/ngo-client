@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 
 const heroVideo =
-  "https://res.cloudinary.com/yozeshlg/video/upload/v1793075516/Create_a_15-second_photorealistic_cinematic_documentary_video_in_16_9_using_the_supplied_image_as_the_exact_visual_reference_and_opening_frame._Preserve_the_same_Indian_school_environment_children_blue-and-white.mp4";
+  "https://res.cloudinary.com/yozeshlg/video/upload/v1793163869/gemini_generated_video_9d70d992.mp4";
 
 const heroImage =
-  "https://res.cloudinary.com/yozeshlg/image/upload/v1793084471/Joyful_Children_Amidst_the_Debris.png";
+  "https://res.cloudinary.com/yozeshlg/image/upload/v1793163093/Cheerful_Classroom_Learning_Together.png";
 
 
 const slides = [
@@ -14,7 +14,7 @@ const slides = [
   { type: "video", src: heroVideo },
 ];
 
-const SLIDE_INTERVAL = 4000; 
+const SLIDE_INTERVAL = 3000; 
 
 const HeroSection = () => {
   const navigate = useNavigate();

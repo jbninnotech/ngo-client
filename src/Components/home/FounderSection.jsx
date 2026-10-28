@@ -2,8 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 import suitPhoto from "../../assets/Professional-suit.jpeg";
 import normalPhoto from "../../assets/normal-photo.jpeg";
-
-const photos = [suitPhoto, normalPhoto];
+import { useNavigate } from "react-router-dom";
 
 const achievements = [
   { number: "10+", label: "Years of service" },
@@ -11,240 +10,175 @@ const achievements = [
   { number: "1,500+", label: "Students supported" },
 ];
 
-const colors = {
-  bgFrom: "#EEF6FF",
-  bgTo: "#CFE3F8",
-  bgGlow: "rgba(227, 171, 53, 0.18)",
-
-  heading: "#06275B",
-  highlight: "#A8700A",
-  body: "#3F5573",
-  quote: "#15365F",
-  label: "#2E7D32",
-
-  // accents
+const c = {
+  navy: "#06275B",
   gold: "#E3AB35",
+  goldDark: "#A8700A",
+  body: "#3F5573",
   green: "#2E7D32",
-
-  // photo
-  photoBorder: "#FFFFFF",
-  backdrop: "rgba(6,39,91,0.08)",
-
-  // name card
-  nameCardBg: "#06275B",
-  nameCardName: "#FFFFFF",
-  nameCardRole: "#F0C566",
-
-  // stats panel
-  statsBg: "#FFFFFF",
-  statsBorder: "#C9DDF3",
-  statsNumber: "#A8700A",
-  statsLabel: "#3F5573",
 };
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.3 },
+  transition: { duration: 0.7, ease: "easeOut", delay },
+});
 
 const FounderSection = () => {
   const [flipped, setFlipped] = useState(false);
-
-  const styles = {
+const navigate = useNavigate()
+  const s = {
     section: {
-      position: "relative",
-      padding: "110px 6%",
-      background: `radial-gradient(circle at 85% 8%, ${colors.bgGlow} 0%, rgba(0,0,0,0) 45%), linear-gradient(160deg, ${colors.bgFrom} 0%, ${colors.bgTo} 100%)`,
+      padding: "90px 6%",
+      background: "linear-gradient(180deg, #FFFFFF 0%, #F6F1E8 100%)",
       overflow: "hidden",
     },
     container: {
-      width: "100%",
       maxWidth: "1100px",
       margin: "0 auto",
       display: "grid",
       gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
       alignItems: "center",
-      gap: "80px",
+      gap: "70px",
     },
-
-    /* ---------- Photo ---------- */
-    photoColumn: {
+    photoWrap: {
+      position: "relative",
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
+      alignItems: "flex-start",
     },
-
-    photoHit: {
-      position: "relative",
-      zIndex: 1,
-      width: "clamp(240px, 70vw, 340px)",
-      aspectRatio: "1",
-      perspective: "1200px",
-      cursor: "pointer",
-      WebkitTapHighlightColor: "transparent",
-    },
-    backdrop: {
+    frame: {
       position: "absolute",
       inset: 0,
-      transform: "translate(22px, 22px)",
-      borderRadius: "50%",
-      // backgroundColor: colors.backdrop,
-      pointerEvents: "none",
+      margin: "auto",
+      width: "clamp(240px, 70vw, 360px)",
+      aspectRatio: "4 / 5",
+      // border: `3px solid ${c.gold}`,
+      borderRadius: "8px",
+      transform: "translate(18px, 18px)",
     },
-    lift: {
+    photoHit: {
       position: "relative",
-      width: "100%",
-      height: "100%",
+      width: "clamp(240px, 70vw, 360px)",
+      aspectRatio: "4 / 5",
+      perspective: "1200px",
+      cursor: "pointer",
     },
-    ring: {
-      position: "absolute",
-      inset: "-12px",
-      // border: `2px solid ${colors.gold}`,
-      borderRadius: "50%",
-      pointerEvents: "none",
-    },
-    photoInner: {
+    inner: {
       position: "relative",
       width: "100%",
       height: "100%",
       transformStyle: "preserve-3d",
-      willChange: "transform",
     },
-    photoFace: {
+    face: {
       position: "absolute",
       inset: 0,
       overflow: "hidden",
-      borderRadius: "50%",
-      border: `6px solid ${colors.photoBorder}`,
-      boxShadow: "0 24px 48px rgba(6,39,91,0.28)",
+      borderRadius: "8px",
+      boxShadow: "0 30px 60px rgba(6,39,91,0.22)",
       backfaceVisibility: "hidden",
       WebkitBackfaceVisibility: "hidden",
-      // backgroundColor: "#E7EDF5",
     },
-    photo: {
-      display: "block",
+    img: {
       width: "100%",
       height: "100%",
       objectFit: "cover",
       objectPosition: "center top",
-      userSelect: "none",
-      pointerEvents: "none",
+      display: "block",
     },
-    nameCard: {
-      position: "relative",
-      zIndex: 2,
-      marginTop: "-26px",
-      padding: "16px 34px",
-      textAlign: "center",
-      backgroundColor: colors.nameCardBg,
-      borderRadius: "14px",
-      boxShadow: "0 16px 32px rgba(6,39,91,0.28)",
+    nameTag: {
+      position: "absolute",
+      left: "-14px",
+      bottom: "28px",
+      padding: "14px 26px",
+      background: c.navy,
+      borderLeft: `5px solid ${c.gold}`,
+      borderRadius: "6px",
+      boxShadow: "0 14px 28px rgba(6,39,91,0.3)",
     },
-    name: {
-      margin: "0 0 3px",
-      color: colors.nameCardName,
-      fontSize: "20px",
-      fontWeight: "800",
-      letterSpacing: "0.2px",
-    },
+    name: { margin: 0, color: "#fff", fontSize: "19px", fontWeight: 800 },
     role: {
-      margin: 0,
-      color: colors.nameCardRole,
-      fontSize: "13px",
-      fontWeight: "700",
-      letterSpacing: "0.4px",
+      margin: "2px 0 0",
+      color: "#F0C566",
+      fontSize: "12.5px",
+      fontWeight: 700,
+      letterSpacing: "0.5px",
     },
 
-    /* ---------- Content ---------- */
-    content: { maxWidth: "560px" },
     label: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: "8px",
-      marginBottom: "18px",
-      color: colors.label,
-      fontSize: "14px",
-      fontWeight: "700",
-      letterSpacing: "0.3px",
-    },
-    labelDot: {
-      width: "8px",
-      height: "8px",
-      borderRadius: "50%",
-      backgroundColor: colors.label,
+      color: c.green,
+      fontSize: "13px",
+      fontWeight: 700,
+      letterSpacing: "2px",
+      textTransform: "uppercase",
     },
     title: {
-      margin: "0 0 28px",
-      color: colors.heading,
-      fontSize: "clamp(34px, 4.8vw, 48px)",
-      fontWeight: "800",
-      lineHeight: "1.15",
-      letterSpacing: "-0.8px",
+      margin: "10px 0 24px",
+      color: c.navy,
+      fontSize: "clamp(26px, 5vw, 36px)",
+      fontWeight: 800,
+      lineHeight: 1.1,
+      letterSpacing: "-1.2px",
     },
-    highlight: { color: colors.highlight },
-    quoteMark: {
-      display: "block",
-      marginBottom: "4px",
-      color: colors.gold,
-      fontFamily: "Georgia, 'Times New Roman', serif",
-      fontSize: "72px",
-      lineHeight: "0.7",
-    },
+    gold: { color: c.goldDark },
     quote: {
-      margin: "0 0 26px",
-      padding: 0,
-      color: colors.quote,
-      fontFamily: "Georgia, 'Times New Roman', serif",
-      fontSize: "clamp(18px, 2.2vw, 21px)",
+      margin: "0 0 22px",
+      padding: "4px 0 4px 20px",
+      borderLeft: `4px solid ${c.gold}`,
+      color: c.navy,
+      fontFamily: "Georgia, serif",
       fontStyle: "italic",
-      fontWeight: "400",
-      lineHeight: "1.65",
+      fontSize: "clamp(10px, 2.2vw, 18px)",
+      lineHeight: 1.65,
     },
     text: {
-      margin: "0 0 16px",
-      color: colors.body,
-      fontSize: "16px",
-      lineHeight: "1.8",
+      margin: "0 0 14px",
+      color: c.body,
+      fontSize: "14px",
+      lineHeight: 1.8,
     },
-    statsGrid: {
-      marginTop: "34px",
+    stats: {
+      marginTop: "30px",
+      paddingTop: "20px",
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
-      padding: "22px 0",
-      backgroundColor: colors.statsBg,
-      border: `1px solid ${colors.statsBorder}`,
-      borderRadius: "18px",
-      boxShadow: "0 12px 30px rgba(6,39,91,0.08)",
+      borderTop: `3px solid ${c.gold}`,
     },
-    statCard: {
-      padding: "4px 10px",
-      textAlign: "center",
+    statNum: {
+      margin: "0 0 4px",
+      color: c.goldDark,
+      fontSize: "clamp(25px, 4vw, 36px)",
+      fontWeight: 800,
+      lineHeight: 1,
     },
-    statNumber: {
-      margin: "0 0 6px",
-      color: colors.statsNumber,
-      fontSize: "clamp(24px, 3vw, 32px)",
-      fontWeight: "800",
-      lineHeight: "1.1",
-    },
-    statLabel: {
-      margin: 0,
-      color: colors.statsLabel,
-      fontSize: "13px",
-      fontWeight: "500",
-      lineHeight: "1.4",
+    statLabel: { margin: 0, color: c.body, fontSize: "13px" },
+    readMore: {
+      marginTop: 56, 
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 10,
+      padding: "12px 26px",
+      background: "#0b2559",
+      color: "#fff",
+      border: "none",
+      borderRadius: 999,
+      fontSize: 14,
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      cursor: "pointer",
+      boxShadow: "0 8px 20px rgba(11,37,89,0.25)",
     },
   };
 
   return (
-    <section style={styles.section}>
-      <div style={styles.container}>
-        {/* Founder photo */}
-        <motion.div
-          style={styles.photoColumn}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-        >
+    <section style={s.section}>
+      <div style={s.container}>
+        {/* Photo */}
+        <motion.div style={s.photoWrap} {...fadeUp(0)}>
+          <div style={s.frame} />
           <div
-            style={styles.photoHit}
-            // mouse hover only; touch devices use tap/click
+            style={s.photoHit}
             onPointerEnter={(e) =>
               e.pointerType === "mouse" && setFlipped(true)
             }
@@ -253,117 +187,80 @@ const FounderSection = () => {
             }
             onClick={() => setFlipped((v) => !v)}
           >
-            <div style={styles.backdrop} />
-
             <motion.div
-              style={styles.lift}
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 300, damping: 22 }}
+              style={s.inner}
+              animate={{ rotateY: flipped ? 180 : 0 }}
+              transition={{ type: "spring", stiffness: 160, damping: 20 }}
             >
-              <div style={styles.ring} />
-
-              <motion.div
-                style={styles.photoInner}
-                animate={{ rotateY: flipped ? 180 : 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 180,
-                  damping: 22,
-                  mass: 0.8,
-                }}
-              >
-                <div style={styles.photoFace}>
-                  <img
-                    src={photos[0]}
-                    alt="Founder of Blanco Educational Academy"
-                    style={styles.photo}
-                    draggable={false}
-                  />
-                </div>
-
-                <div
-                  style={{ ...styles.photoFace, transform: "rotateY(180deg)" }}
-                >
-                  <img
-                    src={photos[1]}
-                    alt="Founder of Blanco Educational Academy"
-                    style={styles.photo}
-                    draggable={false}
-                  />
-                </div>
-              </motion.div>
+              <div style={s.face}>
+                <img
+                  src={suitPhoto}
+                  alt="Founder"
+                  style={s.img}
+                  draggable={false}
+                />
+              </div>
+              <div style={{ ...s.face, transform: "rotateY(180deg)" }}>
+                <img
+                  src={normalPhoto}
+                  alt="Founder"
+                  style={s.img}
+                  draggable={false}
+                />
+              </div>
             </motion.div>
+            <div style={s.nameTag}>
+              <p style={s.name}>Mohammad Ismail</p>
+              <p style={s.role}>Founder &amp; Chairman</p>
+            </div>
           </div>
-
-          <div style={styles.nameCard}>
-            {/* Replace with the real founder name */}
-            <p style={styles.name}>Mohammad Ismail</p>
-            <p style={styles.role}>Founder & Chairman</p>
-          </div>
+          <motion.button
+            style={s.readMore}
+            whileHover={{ y: -2, boxShadow: "0 12px 26px rgba(11,37,89,0.35)" }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => {
+              navigate("/about");
+            }}
+          >
+            Read More
+            <span style={{ color: "#e8b04a", fontSize: 16 }}>→</span>
+          </motion.button>
         </motion.div>
 
-        {/* Founder information */}
-        <motion.div
-          style={styles.content}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-        >
-          {/* <span style={styles.label}>
-            <span style={styles.labelDot} />
+        {/* Text */}
+        <div style={{ maxWidth: "560px" }}>
+          {/* <motion.span style={s.label} {...fadeUp(0)}>
             Meet our founder
-          </span> */}
-
-          <h2 style={styles.title}>
-            A vision built on{" "}
-            <span style={styles.highlight}>education and hope</span>
-          </h2>
-
-          <blockquote style={styles.quote}>
-            <span style={styles.quoteMark} aria-hidden="true">
-              &ldquo;
-            </span>
+          </motion.span> */}
+          <motion.h2 style={s.title} {...fadeUp(0.1)}>
+            A vision built on <span style={s.gold}>education and hope</span>
+          </motion.h2>
+          <motion.blockquote style={s.quote} {...fadeUp(0.2)}>
             Education is more than learning lessons. It is about giving every
             student the confidence, knowledge and opportunity to build a better
             future.
-          </blockquote>
-
-          <p style={styles.text}>
+          </motion.blockquote>
+          <motion.p style={s.text} {...fadeUp(0.3)}>
             Blanco Educational Academy was founded with the belief that every
             child deserves meaningful education, regardless of financial
             circumstances or social background.
-          </p>
-
-          <p style={styles.text}>
+          </motion.p>
+          <motion.p style={s.text} {...fadeUp(0.4)}>
             Through scholarships, learning resources, digital education,
             mentoring and career guidance, the academy continues to help
             students discover their abilities and move toward independent
             futures.
-          </p>
+          </motion.p>
 
-          <motion.div
-            style={styles.statsGrid}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-          >
-            {achievements.map((item, index) => (
-              <div
-                key={item.label}
-                style={{
-                  ...styles.statCard,
-                  borderLeft:
-                    index > 0 ? `1px solid ${colors.statsBorder}` : "none",
-                }}
-              >
-                <p style={styles.statNumber}>{item.number}</p>
-                <p style={styles.statLabel}>{item.label}</p>
+          <motion.div style={s.stats} {...fadeUp(0.5)}>
+            {achievements.map((a) => (
+              <div key={a.label}>
+                <p style={s.statNum}>{a.number}</p>
+                <p style={s.statLabel}>{a.label}</p>
               </div>
             ))}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

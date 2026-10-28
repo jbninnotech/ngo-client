@@ -117,7 +117,7 @@ const css = `
 .pr__title {
   margin: 0; color: #1f1b14;
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(34px, 5vw, 60px); font-weight: 500;
+  font-size: clamp(26px, 5vw, 40px); font-weight: 500;
   line-height: 1.12; letter-spacing: -1.2px; text-wrap: balance;
 }
 .pr__title em { color: #a57a35; font-style: italic; font-weight: 500; }
@@ -451,9 +451,9 @@ const ProgramsPreview = () => {
                     <span className="pr__shade" />
                     <span className="pr__pill">{p.tag}</span>
                     <span className="pr__content">
-                      <span className="pr__eyebrow">{p.eyebrow}</span>
+                      {/* <span className="pr__eyebrow">{p.eyebrow}</span> */}
                       <h3 className="pr__name">{p.title}</h3>
-                      <p className="pr__text">{p.description}</p>
+                      {/* <p className="pr__text">{p.description}</p> */}
                       <span className="pr__more">
                         LEARN MORE <span aria-hidden="true">↗</span>
                       </span>

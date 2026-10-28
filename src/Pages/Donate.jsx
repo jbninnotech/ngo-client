@@ -1,21 +1,110 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
+/* ------------------------------------------------------------------
+   THEMES
+   Change `const theme = lightTheme;` to `darkTheme` to switch.
+------------------------------------------------------------------- */
+const lightTheme = {
+  colorScheme: "light",
+
+  primary: "#3730A3",
+  primaryDark: "#1E1B4B",
+  accent: "#0D9488",
+  accentDark: "#134E4A",
+  accentText: "#0D9488",
+
+  gold: "#F59E0B",
+  goldDark: "#D97706",
+  goldLight: "#FCD34D",
+  goldText: "#D97706",
+
+  pageBg: "#EFEDFB",
+  cardBg: "#FFFFFF",
+  inputBg: "#FFFFFF",
+  tabBg: "#EEEBFB",
+  border: "#C9C4EE",
+  divider: "#E6E3F7",
+  activeBg: "#EEF2FF",
+  receiptBg: "#F8F7FF",
+
+  heading: "#3730A3",
+  text: "#1E1B4B",
+  muted: "#6B6894",
+  mutedSoft: "#8A87AE",
+
+  onDark: "#D6D3F5",
+  onDarkMuted: "#C4C0EC",
+
+  shadowCard: "0 20px 55px rgba(55,48,163,0.12)",
+  shadowSoft: "0 8px 20px rgba(55,48,163,0.18)",
+  shadowActive: "0 10px 25px rgba(55,48,163,0.18)",
+  shadowGold: "0 14px 30px rgba(245,158,11,0.30)",
+  shadowGoldHover: "0 19px 38px rgba(245,158,11,0.42)",
+  shadowSummary: "0 22px 60px rgba(30,27,75,0.28)",
+  shadowSuccess: "0 30px 90px rgba(0,0,0,0.28)",
+  ringAccent: "0 0 0 3px rgba(13,148,136,0.12)",
+
+  glowGold: "rgba(245,158,11,0.16)",
+  glowAccent: "rgba(13,148,136,0.20)",
+};
+
+const darkTheme = {
+  colorScheme: "dark",
+
+  primary: "#6366F1",
+  primaryDark: "#0B1020",
+  accent: "#14B8A6",
+  accentDark: "#0F2A2A",
+  accentText: "#2DD4BF",
+
+  gold: "#FBBF24",
+  goldDark: "#D97706",
+  goldLight: "#FCD34D",
+  goldText: "#FBBF24",
+
+  pageBg: "#0B1020",
+  cardBg: "#141B2E",
+  inputBg: "#1B2440",
+  tabBg: "#1B2440",
+  border: "#2A3558",
+  divider: "#2A3558",
+  activeBg: "#12332F",
+  receiptBg: "#1B2440",
+
+  heading: "#E6EAF7",
+  text: "#E6EAF7",
+  muted: "#9AA6C7",
+  mutedSoft: "#7D89AD",
+
+  onDark: "#D5DCF2",
+  onDarkMuted: "#B4BEDB",
+
+  shadowCard: "0 20px 55px rgba(0,0,0,0.45)",
+  shadowSoft: "0 8px 20px rgba(0,0,0,0.35)",
+  shadowActive: "0 10px 25px rgba(99,102,241,0.30)",
+  shadowGold: "0 14px 30px rgba(251,191,36,0.25)",
+  shadowGoldHover: "0 19px 38px rgba(251,191,36,0.38)",
+  shadowSummary: "0 22px 60px rgba(0,0,0,0.50)",
+  shadowSuccess: "0 30px 90px rgba(0,0,0,0.55)",
+  ringAccent: "0 0 0 3px rgba(45,212,191,0.16)",
+
+  glowGold: "rgba(251,191,36,0.14)",
+  glowAccent: "rgba(20,184,166,0.18)",
+};
+
+const theme = lightTheme;
+
 const Donate = () => {
-  const [donationType, setDonationType] =
-    useState("one-time");
+  const [donationType, setDonationType] = useState("one-time");
 
-  const [selectedAmount, setSelectedAmount] =
-    useState(1000);
+  const [selectedAmount, setSelectedAmount] = useState(1000);
 
-  const [customAmount, setCustomAmount] =
-    useState("");
+  const [customAmount, setCustomAmount] = useState("");
 
-  const [paymentMethod, setPaymentMethod] =
-    useState("upi");
+  const [paymentMethod, setPaymentMethod] = useState("upi");
 
-  const [submitted, setSubmitted] =
-    useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -108,8 +197,7 @@ const Donate = () => {
     : selectedAmount;
 
   const selectedCampaign = campaigns.find(
-    (campaign) =>
-      campaign.value === formData.campaign
+    (campaign) => campaign.value === formData.campaign
   );
 
   const handleAmountSelection = (amount) => {
@@ -123,13 +211,11 @@ const Donate = () => {
   };
 
   const handleChange = (event) => {
-    const { name, value, type, checked } =
-      event.target;
+    const { name, value, type, checked } = event.target;
 
     setFormData((previousData) => ({
       ...previousData,
-      [name]:
-        type === "checkbox" ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
@@ -170,7 +256,7 @@ const Donate = () => {
   const styles = {
     page: {
       minHeight: "100vh",
-      backgroundColor: "#F6F8FC",
+      backgroundColor: theme.pageBg,
     },
 
     hero: {
@@ -182,8 +268,7 @@ const Donate = () => {
       justifyContent: "center",
       overflow: "hidden",
       textAlign: "center",
-      background:
-        "linear-gradient(135deg, #031B42 0%, #06275B 55%, #123F2A 100%)",
+      background: `linear-gradient(135deg, ${theme.primaryDark} 0%, ${theme.primary} 55%, ${theme.accentDark} 100%)`,
     },
 
     heroGlowOne: {
@@ -193,7 +278,7 @@ const Donate = () => {
       width: "460px",
       height: "460px",
       borderRadius: "50%",
-      backgroundColor: "rgba(218,165,50,0.16)",
+      backgroundColor: theme.glowGold,
       filter: "blur(25px)",
     },
 
@@ -204,7 +289,7 @@ const Donate = () => {
       width: "470px",
       height: "470px",
       borderRadius: "50%",
-      backgroundColor: "rgba(46,125,50,0.20)",
+      backgroundColor: theme.glowAccent,
       filter: "blur(30px)",
     },
 
@@ -218,9 +303,9 @@ const Donate = () => {
       display: "inline-block",
       marginBottom: "20px",
       padding: "9px 18px",
-      color: "#F1C25B",
+      color: theme.goldLight,
       backgroundColor: "rgba(255,255,255,0.08)",
-      border: "1px solid rgba(241,194,91,0.38)",
+      border: "1px solid rgba(252,211,77,0.38)",
       borderRadius: "30px",
       fontSize: "12px",
       fontWeight: "800",
@@ -235,13 +320,13 @@ const Donate = () => {
     },
 
     goldText: {
-      color: "#E0AA34",
+      color: theme.gold,
     },
 
     heroDescription: {
       maxWidth: "720px",
       margin: "auto",
-      color: "#CFDBEA",
+      color: theme.onDark,
       fontSize: "18px",
       lineHeight: "1.8",
     },
@@ -255,18 +340,17 @@ const Donate = () => {
       maxWidth: "1200px",
       margin: "auto",
       display: "grid",
-      gridTemplateColumns:
-        "minmax(0, 1.5fr) minmax(300px, 0.8fr)",
+      gridTemplateColumns: "minmax(0, 1.5fr) minmax(300px, 0.8fr)",
       alignItems: "start",
       gap: "35px",
     },
 
     formCard: {
       padding: "42px",
-      backgroundColor: "#FFFFFF",
-      border: "1px solid #E1E8F1",
+      backgroundColor: theme.cardBg,
+      border: `1px solid ${theme.border}`,
       borderRadius: "24px",
-      boxShadow: "0 20px 55px rgba(6,39,91,0.11)",
+      boxShadow: theme.shadowCard,
     },
 
     sectionHeader: {
@@ -275,7 +359,7 @@ const Donate = () => {
 
     smallHeading: {
       margin: "0 0 8px",
-      color: "#2E7D32",
+      color: theme.accentText,
       fontSize: "12px",
       fontWeight: "800",
       letterSpacing: "1.5px",
@@ -283,13 +367,13 @@ const Donate = () => {
 
     formTitle: {
       margin: "0 0 9px",
-      color: "#06275B",
+      color: theme.heading,
       fontSize: "31px",
     },
 
     formDescription: {
       margin: 0,
-      color: "#68778B",
+      color: theme.muted,
       fontSize: "14px",
       lineHeight: "1.7",
     },
@@ -300,13 +384,13 @@ const Donate = () => {
       gap: "7px",
       marginBottom: "30px",
       padding: "6px",
-      backgroundColor: "#EDF2F8",
+      backgroundColor: theme.tabBg,
       borderRadius: "13px",
     },
 
     typeButton: {
       padding: "13px",
-      color: "#596A80",
+      color: theme.muted,
       backgroundColor: "transparent",
       border: "none",
       borderRadius: "9px",
@@ -317,22 +401,20 @@ const Donate = () => {
 
     activeType: {
       color: "#FFFFFF",
-      background:
-        "linear-gradient(135deg, #06275B, #2E7D32)",
-      boxShadow: "0 8px 20px rgba(6,39,91,0.18)",
+      background: `linear-gradient(135deg, ${theme.primary}, ${theme.accent})`,
+      boxShadow: theme.shadowSoft,
     },
 
     groupTitle: {
       margin: "0 0 14px",
-      color: "#17325B",
+      color: theme.text,
       fontSize: "15px",
       fontWeight: "800",
     },
 
     amountGrid: {
       display: "grid",
-      gridTemplateColumns:
-        "repeat(auto-fit, minmax(130px, 1fr))",
+      gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
       gap: "11px",
       marginBottom: "18px",
     },
@@ -340,19 +422,20 @@ const Donate = () => {
     amountCard: {
       padding: "17px 12px",
       textAlign: "center",
-      color: "#17325B",
-      backgroundColor: "#F7F9FC",
-      border: "1px solid #DCE4EF",
-      borderRadius: "12px",
+      color: theme.text,
+      backgroundColor: theme.inputBg,
+      border: `1.5px solid ${theme.border}`,
+      borderRadius: "14px",
       cursor: "pointer",
+      boxShadow: "0 2px 8px rgba(55,48,163,0.06)",
     },
 
     activeAmount: {
-      color: "#FFFFFF",
-      background:
-        "linear-gradient(135deg, #06275B, #2E7D32)",
-      borderColor: "transparent",
-      boxShadow: "0 10px 25px rgba(6,39,91,0.18)",
+      color: theme.primary,
+      backgroundColor: theme.activeBg,
+      borderColor: theme.primary,
+      boxShadow:
+        "0 0 0 3px rgba(55,48,163,0.14), 0 10px 25px rgba(55,48,163,0.14)",
     },
 
     amountIcon: {
@@ -381,7 +464,7 @@ const Donate = () => {
     },
 
     label: {
-      color: "#17325B",
+      color: theme.text,
       fontSize: "13px",
       fontWeight: "800",
     },
@@ -389,12 +472,13 @@ const Donate = () => {
     input: {
       width: "100%",
       padding: "14px 15px",
-      color: "#17325B",
-      backgroundColor: "#F7F9FC",
-      border: "1px solid #DCE4EF",
+      color: theme.text,
+      backgroundColor: theme.inputBg,
+      border: `1px solid ${theme.border}`,
       borderRadius: "9px",
       outline: "none",
       fontSize: "14px",
+      colorScheme: theme.colorScheme,
     },
 
     customAmount: {
@@ -406,7 +490,7 @@ const Donate = () => {
       position: "absolute",
       top: "50%",
       left: "15px",
-      color: "#06275B",
+      color: theme.heading,
       fontWeight: "850",
       transform: "translateY(-50%)",
     },
@@ -414,18 +498,19 @@ const Donate = () => {
     customInput: {
       width: "100%",
       padding: "14px 15px 14px 36px",
-      color: "#17325B",
-      backgroundColor: "#F7F9FC",
-      border: "1px solid #DCE4EF",
+      color: theme.text,
+      backgroundColor: theme.inputBg,
+      border: `1px solid ${theme.border}`,
       borderRadius: "9px",
       outline: "none",
       fontSize: "14px",
+      colorScheme: theme.colorScheme,
     },
 
     divider: {
       height: "1px",
       margin: "30px 0",
-      backgroundColor: "#E5EAF1",
+      backgroundColor: theme.divider,
     },
 
     form: {
@@ -435,8 +520,7 @@ const Donate = () => {
 
     twoColumns: {
       display: "grid",
-      gridTemplateColumns:
-        "repeat(auto-fit, minmax(190px, 1fr))",
+      gridTemplateColumns: "repeat(auto-fit, minmax(190px, 1fr))",
       gap: "16px",
     },
 
@@ -445,19 +529,19 @@ const Donate = () => {
       minHeight: "95px",
       padding: "14px 15px",
       resize: "vertical",
-      color: "#17325B",
-      backgroundColor: "#F7F9FC",
-      border: "1px solid #DCE4EF",
+      color: theme.text,
+      backgroundColor: theme.inputBg,
+      border: `1px solid ${theme.border}`,
       borderRadius: "9px",
       outline: "none",
       fontFamily: "inherit",
       fontSize: "14px",
+      colorScheme: theme.colorScheme,
     },
 
     paymentGrid: {
       display: "grid",
-      gridTemplateColumns:
-        "repeat(auto-fit, minmax(150px, 1fr))",
+      gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
       gap: "11px",
     },
 
@@ -466,17 +550,18 @@ const Donate = () => {
       display: "flex",
       alignItems: "center",
       gap: "11px",
-      color: "#17325B",
-      backgroundColor: "#F7F9FC",
-      border: "1px solid #DCE4EF",
-      borderRadius: "11px",
+      color: theme.text,
+      backgroundColor: theme.inputBg,
+      border: `1.5px solid ${theme.border}`,
+      borderRadius: "12px",
       cursor: "pointer",
+      textAlign: "left",
     },
 
     activePayment: {
-      backgroundColor: "#EAF6EC",
-      borderColor: "#2E7D32",
-      boxShadow: "0 0 0 3px rgba(46,125,50,0.08)",
+      backgroundColor: theme.activeBg,
+      borderColor: theme.primary,
+      boxShadow: "0 0 0 3px rgba(55,48,163,0.14)",
     },
 
     paymentIcon: {
@@ -485,14 +570,14 @@ const Donate = () => {
 
     paymentLabel: {
       margin: "0 0 3px",
-      color: "#06275B",
+      color: theme.heading,
       fontSize: "13px",
       fontWeight: "850",
     },
 
     paymentDescription: {
       margin: 0,
-      color: "#758497",
+      color: theme.mutedSoft,
       fontSize: "9px",
     },
 
@@ -505,7 +590,7 @@ const Donate = () => {
       display: "flex",
       alignItems: "flex-start",
       gap: "9px",
-      color: "#68778B",
+      color: theme.muted,
       fontSize: "12px",
       lineHeight: "1.5",
     },
@@ -514,19 +599,18 @@ const Donate = () => {
       width: "100%",
       padding: "16px",
       color: "#FFFFFF",
-      background:
-        "linear-gradient(135deg, #D7A12D, #AD710B)",
+      background: `linear-gradient(135deg, ${theme.gold}, ${theme.goldDark})`,
       border: "none",
       borderRadius: "10px",
       fontSize: "15px",
       fontWeight: "850",
       cursor: "pointer",
-      boxShadow: "0 14px 30px rgba(197,138,22,0.27)",
+      boxShadow: theme.shadowGold,
     },
 
     secureText: {
       margin: "-6px 0 0",
-      color: "#8492A4",
+      color: theme.mutedSoft,
       textAlign: "center",
       fontSize: "10px",
     },
@@ -536,16 +620,15 @@ const Donate = () => {
       top: "105px",
       padding: "32px",
       color: "#FFFFFF",
-      background:
-        "linear-gradient(145deg, #06275B 0%, #031B42 60%, #174A2A 100%)",
+      background: `linear-gradient(145deg, ${theme.primary} 0%, ${theme.primaryDark} 60%, ${theme.accentDark} 100%)`,
       borderRadius: "22px",
-      boxShadow: "0 22px 60px rgba(6,39,91,0.22)",
+      boxShadow: theme.shadowSummary,
     },
 
     summaryBadge: {
       display: "inline-block",
       marginBottom: "18px",
-      color: "#F1C25B",
+      color: theme.goldLight,
       fontSize: "11px",
       fontWeight: "800",
       letterSpacing: "1.4px",
@@ -562,7 +645,7 @@ const Donate = () => {
       justifyContent: "space-between",
       gap: "20px",
       padding: "14px 0",
-      color: "#C9D6E6",
+      color: theme.onDarkMuted,
       borderBottom: "1px solid rgba(255,255,255,0.11)",
       fontSize: "12px",
     },
@@ -584,13 +667,13 @@ const Donate = () => {
 
     totalLabel: {
       margin: "0 0 6px",
-      color: "#C9D6E6",
+      color: theme.onDarkMuted,
       fontSize: "11px",
     },
 
     totalAmount: {
       margin: 0,
-      color: "#F1C25B",
+      color: theme.goldLight,
       fontSize: "35px",
       fontWeight: "900",
     },
@@ -605,7 +688,7 @@ const Donate = () => {
       display: "flex",
       alignItems: "flex-start",
       gap: "11px",
-      color: "#D5E0EC",
+      color: theme.onDark,
       fontSize: "12px",
       lineHeight: "1.5",
     },
@@ -617,9 +700,8 @@ const Donate = () => {
       alignItems: "center",
       justifyContent: "center",
       flexShrink: 0,
-      color: "#06275B",
-      background:
-        "linear-gradient(135deg, #F1C25B, #C98A13)",
+      color: theme.primaryDark,
+      background: `linear-gradient(135deg, ${theme.goldLight}, ${theme.gold})`,
       borderRadius: "50%",
       fontWeight: "900",
     },
@@ -630,8 +712,7 @@ const Donate = () => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      background:
-        "linear-gradient(135deg, #031B42, #06275B 60%, #123F2A)",
+      background: `linear-gradient(135deg, ${theme.primaryDark}, ${theme.primary} 60%, ${theme.accentDark})`,
     },
 
     successCard: {
@@ -639,9 +720,9 @@ const Donate = () => {
       maxWidth: "650px",
       padding: "55px 45px",
       textAlign: "center",
-      backgroundColor: "#FFFFFF",
+      backgroundColor: theme.cardBg,
       borderRadius: "25px",
-      boxShadow: "0 30px 90px rgba(0,0,0,0.28)",
+      boxShadow: theme.shadowSuccess,
     },
 
     successIcon: {
@@ -652,50 +733,48 @@ const Donate = () => {
       justifyContent: "center",
       margin: "0 auto 22px",
       color: "#FFFFFF",
-      background:
-        "linear-gradient(135deg, #2E7D32, #174A26)",
+      background: `linear-gradient(135deg, ${theme.accent}, ${theme.accentDark})`,
       borderRadius: "50%",
       fontSize: "38px",
     },
 
     successTitle: {
       margin: "0 0 14px",
-      color: "#06275B",
+      color: theme.heading,
       fontSize: "35px",
     },
 
     successDescription: {
       margin: "0 0 25px",
-      color: "#68778B",
+      color: theme.muted,
       lineHeight: "1.8",
     },
 
     receiptBox: {
       marginBottom: "25px",
       padding: "20px",
-      backgroundColor: "#F6F9FC",
-      border: "1px solid #E0E7F0",
+      backgroundColor: theme.receiptBg,
+      border: `1px solid ${theme.border}`,
       borderRadius: "13px",
     },
 
     receiptAmount: {
       margin: "0 0 7px",
-      color: "#C18413",
+      color: theme.goldText,
       fontSize: "30px",
       fontWeight: "900",
     },
 
     receiptText: {
       margin: 0,
-      color: "#607086",
+      color: theme.muted,
       fontSize: "13px",
     },
 
     successButton: {
       padding: "14px 25px",
       color: "#FFFFFF",
-      background:
-        "linear-gradient(135deg, #06275B, #2E7D32)",
+      background: `linear-gradient(135deg, ${theme.primary}, ${theme.accent})`,
       border: "none",
       borderRadius: "10px",
       fontWeight: "800",
@@ -732,22 +811,17 @@ const Donate = () => {
             ✓
           </motion.div>
 
-          <h1 style={styles.successTitle}>
-            Thank You for Your Support!
-          </h1>
+          <h1 style={styles.successTitle}>Thank You for Your Support!</h1>
 
           <p style={styles.successDescription}>
-            Your demo donation has been recorded successfully.
-            Your support helps Blanco Educational Academy create
-            better learning opportunities for students.
+            Your demo donation has been recorded successfully. Your support
+            helps Blanco Educational Academy create better learning
+            opportunities for students.
           </p>
 
           <div style={styles.receiptBox}>
             <p style={styles.receiptAmount}>
-              ₹
-              {donationAmount.toLocaleString(
-                "en-IN"
-              )}
+              ₹{donationAmount.toLocaleString("en-IN")}
             </p>
 
             <p style={styles.receiptText}>
@@ -841,17 +915,13 @@ const Donate = () => {
             transition={{ duration: 0.8 }}
           >
             <div style={styles.sectionHeader}>
-              <p style={styles.smallHeading}>
-                MAKE A CONTRIBUTION
-              </p>
+              <p style={styles.smallHeading}>MAKE A CONTRIBUTION</p>
 
-              <h2 style={styles.formTitle}>
-                Donation details
-              </h2>
+              <h2 style={styles.formTitle}>Donation details</h2>
 
               <p style={styles.formDescription}>
-                Select your donation preference and complete your
-                details below.
+                Select your donation preference and complete your details
+                below.
               </p>
             </div>
 
@@ -869,14 +939,10 @@ const Donate = () => {
                 <motion.button
                   key={type.value}
                   type="button"
-                  onClick={() =>
-                    setDonationType(type.value)
-                  }
+                  onClick={() => setDonationType(type.value)}
                   style={{
                     ...styles.typeButton,
-                    ...(donationType === type.value
-                      ? styles.activeType
-                      : {}),
+                    ...(donationType === type.value ? styles.activeType : {}),
                   }}
                   whileTap={{ scale: 0.97 }}
                 >
@@ -885,39 +951,30 @@ const Donate = () => {
               ))}
             </div>
 
-            <h3 style={styles.groupTitle}>
-              Select a donation amount
-            </h3>
+            <h3 style={styles.groupTitle}>Select a donation amount</h3>
 
             <div style={styles.amountGrid}>
               {suggestedAmounts.map((item) => (
                 <motion.button
                   key={item.amount}
                   type="button"
-                  onClick={() =>
-                    handleAmountSelection(item.amount)
-                  }
+                  onClick={() => handleAmountSelection(item.amount)}
                   style={{
                     ...styles.amountCard,
-                    ...(selectedAmount === item.amount &&
-                    !customAmount
+                    ...(selectedAmount === item.amount && !customAmount
                       ? styles.activeAmount
                       : {}),
                   }}
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.96 }}
                 >
-                  <span style={styles.amountIcon}>
-                    {item.icon}
-                  </span>
+                  <span style={styles.amountIcon}>{item.icon}</span>
 
                   <span style={styles.amountNumber}>
                     ₹{item.amount.toLocaleString("en-IN")}
                   </span>
 
-                  <span style={styles.amountText}>
-                    {item.text}
-                  </span>
+                  <span style={styles.amountText}>{item.text}</span>
                 </motion.button>
               ))}
             </div>
@@ -935,15 +992,9 @@ const Donate = () => {
               />
             </div>
 
-            <form
-              style={styles.form}
-              onSubmit={handleSubmit}
-            >
+            <form style={styles.form} onSubmit={handleSubmit}>
               <div style={styles.field}>
-                <label
-                  style={styles.label}
-                  htmlFor="campaign"
-                >
+                <label style={styles.label} htmlFor="campaign">
                   Support a Cause *
                 </label>
 
@@ -956,10 +1007,7 @@ const Donate = () => {
                   required
                 >
                   {campaigns.map((campaign) => (
-                    <option
-                      key={campaign.value}
-                      value={campaign.value}
-                    >
+                    <option key={campaign.value} value={campaign.value}>
                       {campaign.label}
                     </option>
                   ))}
@@ -968,16 +1016,11 @@ const Donate = () => {
 
               <div style={styles.divider} />
 
-              <h3 style={styles.groupTitle}>
-                Donor information
-              </h3>
+              <h3 style={styles.groupTitle}>Donor information</h3>
 
               <div style={styles.twoColumns}>
                 <div style={styles.field}>
-                  <label
-                    style={styles.label}
-                    htmlFor="donor-name"
-                  >
+                  <label style={styles.label} htmlFor="donor-name">
                     Full Name *
                   </label>
 
@@ -994,10 +1037,7 @@ const Donate = () => {
                 </div>
 
                 <div style={styles.field}>
-                  <label
-                    style={styles.label}
-                    htmlFor="donor-phone"
-                  >
+                  <label style={styles.label} htmlFor="donor-phone">
                     Phone Number *
                   </label>
 
@@ -1016,10 +1056,7 @@ const Donate = () => {
 
               <div style={styles.twoColumns}>
                 <div style={styles.field}>
-                  <label
-                    style={styles.label}
-                    htmlFor="donor-email"
-                  >
+                  <label style={styles.label} htmlFor="donor-email">
                     Email Address *
                   </label>
 
@@ -1036,10 +1073,7 @@ const Donate = () => {
                 </div>
 
                 <div style={styles.field}>
-                  <label
-                    style={styles.label}
-                    htmlFor="donor-pan"
-                  >
+                  <label style={styles.label} htmlFor="donor-pan">
                     PAN Number
                   </label>
 
@@ -1056,10 +1090,7 @@ const Donate = () => {
               </div>
 
               <div style={styles.field}>
-                <label
-                  style={styles.label}
-                  htmlFor="donor-address"
-                >
+                <label style={styles.label} htmlFor="donor-address">
                   Address
                 </label>
 
@@ -1075,18 +1106,14 @@ const Donate = () => {
 
               <div style={styles.divider} />
 
-              <h3 style={styles.groupTitle}>
-                Select a payment method
-              </h3>
+              <h3 style={styles.groupTitle}>Select a payment method</h3>
 
               <div style={styles.paymentGrid}>
                 {paymentMethods.map((method) => (
                   <motion.button
                     key={method.value}
                     type="button"
-                    onClick={() =>
-                      setPaymentMethod(method.value)
-                    }
+                    onClick={() => setPaymentMethod(method.value)}
                     style={{
                       ...styles.paymentCard,
                       ...(paymentMethod === method.value
@@ -1096,20 +1123,12 @@ const Donate = () => {
                     whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    <span style={styles.paymentIcon}>
-                      {method.icon}
-                    </span>
+                    <span style={styles.paymentIcon}>{method.icon}</span>
 
                     <span>
-                      <p style={styles.paymentLabel}>
-                        {method.label}
-                      </p>
+                      <p style={styles.paymentLabel}>{method.label}</p>
 
-                      <p
-                        style={
-                          styles.paymentDescription
-                        }
-                      >
+                      <p style={styles.paymentDescription}>
                         {method.description}
                       </p>
                     </span>
@@ -1125,7 +1144,6 @@ const Donate = () => {
                     checked={formData.anonymous}
                     onChange={handleChange}
                   />
-
                   Display this donation anonymously.
                 </label>
 
@@ -1136,9 +1154,7 @@ const Donate = () => {
                     checked={formData.receipt}
                     onChange={handleChange}
                   />
-
-                  Send a donation acknowledgement and receipt to
-                  my email.
+                  Send a donation acknowledgement and receipt to my email.
                 </label>
               </div>
 
@@ -1148,21 +1164,16 @@ const Donate = () => {
                 whileHover={{
                   y: -4,
                   scale: 1.01,
-                  boxShadow:
-                    "0 19px 38px rgba(197,138,22,0.38)",
+                  boxShadow: theme.shadowGoldHover,
                 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Donate ₹
-                {donationAmount.toLocaleString(
-                  "en-IN"
-                )}{" "}
-                →
+                Donate ₹{donationAmount.toLocaleString("en-IN")} →
               </motion.button>
 
               <p style={styles.secureText}>
-                🔒 This is a demo payment interface. No real
-                payment will be processed.
+                🔒 This is a demo payment interface. No real payment will be
+                processed.
               </p>
             </form>
           </motion.div>
@@ -1175,30 +1186,22 @@ const Donate = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span style={styles.summaryBadge}>
-              DONATION SUMMARY
-            </span>
+            <span style={styles.summaryBadge}>DONATION SUMMARY</span>
 
-            <h2 style={styles.summaryTitle}>
-              Your contribution
-            </h2>
+            <h2 style={styles.summaryTitle}>Your contribution</h2>
 
             <div style={styles.summaryRow}>
               <span>Donation type</span>
 
               <span style={styles.summaryValue}>
-                {donationType === "monthly"
-                  ? "Monthly"
-                  : "One-Time"}
+                {donationType === "monthly" ? "Monthly" : "One-Time"}
               </span>
             </div>
 
             <div style={styles.summaryRow}>
               <span>Selected cause</span>
 
-              <span style={styles.summaryValue}>
-                {selectedCampaign?.label}
-              </span>
+              <span style={styles.summaryValue}>{selectedCampaign?.label}</span>
             </div>
 
             <div style={styles.summaryRow}>
@@ -1206,24 +1209,17 @@ const Donate = () => {
 
               <span style={styles.summaryValue}>
                 {
-                  paymentMethods.find(
-                    (method) =>
-                      method.value === paymentMethod
-                  )?.label
+                  paymentMethods.find((method) => method.value === paymentMethod)
+                    ?.label
                 }
               </span>
             </div>
 
             <div style={styles.totalArea}>
-              <p style={styles.totalLabel}>
-                Total contribution
-              </p>
+              <p style={styles.totalLabel}>Total contribution</p>
 
               <p style={styles.totalAmount}>
-                ₹
-                {donationAmount.toLocaleString(
-                  "en-IN"
-                )}
+                ₹{donationAmount.toLocaleString("en-IN")}
               </p>
             </div>
 
@@ -1234,10 +1230,7 @@ const Donate = () => {
                 "Campaign updates shared with donors",
                 "Your information is handled responsibly",
               ].map((item) => (
-                <div
-                  key={item}
-                  style={styles.impactItem}
-                >
+                <div key={item} style={styles.impactItem}>
                   <span style={styles.check}>✓</span>
                   {item}
                 </div>

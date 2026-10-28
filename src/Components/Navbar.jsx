@@ -6,9 +6,9 @@ import logo from "../assets/blanco-logo.png";
 const navigationLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "Programs", path: "/programs" },
-  { name: "Campaigns", path: "/campaigns" },
-  { name: "Events", path: "/events" },
+  // { name: "Programs", path: "/programs" },
+  // { name: "Campaigns", path: "/campaigns" },
+  // { name: "Events", path: "/events" },
   { name: "Gallery", path: "/gallery" },
   { name: "Volunteer", path: "/volunteer" },
   { name: "Contact", path: "/contact" },
